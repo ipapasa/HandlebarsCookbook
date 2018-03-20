@@ -1,0 +1,1143 @@
+<!DOCTYPE html>                                                                                                       
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ <title>Handlebars Cookbook - Inverted Block</title>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" rel="stylesheet">
+ <link href="style.css" rel="stylesheet">
+ <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAPzlzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAARAAAAARAAAAEQAAARAAAAABEAARAiIiIiARABECACIAIBEAEQIAIgAgEQARAgAiACARARECAAAAIBEREQIAAAAgERARAgAiACARABECACIAIBEAEQIAIgAgEQARAiIiIiARAAEQAAAAARAAABEAAAARAAAAARAAARAADzzwAA5+cAAM/zAACQCQAAkAkAAJAJAACQCQAAEAgAABAIAACQCQAAkAkAAJAJAACQCQAAz/MAAOfnAADzzwAA" rel="icon" type="image/x-icon" />
+ <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <div class="container">
+  <div class="navbar-header">
+   <a class="navbar-brand" href="./"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Handlebars Cookbook</a>
+  </div>
+  <ul class="nav navbar-nav">
+   <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index <span class="caret"></span>
+    </a>
+    <ol class="dropdown-menu">
+<li><a href="index.html">1. About this book</a></li>
+<li><a href="0002-install.html">2. Create your project</a></li>
+<li><a href="0003-hello.html">3. Hello World</a></li>
+<li><a href="0004-simple-variable.html">4. Simple Variable</a></li>
+<li><a href="0005-variable-escape.html">5. Variable Escaping</a></li>
+<li><a href="0006-raw.html">6. Raw Output</a></li>
+<li><a href="0007-specific-values.html">7. Specific Values</a></li>
+<li><a href="0008-block.html">8. Block</a></li>
+<li><a href="0009-inverted-block.html">9. Inverted Block</a></li>
+<li><a href="0010-comment.html">10. Comment</a></li>
+<li><a href="0011-partial.html">11. Partials</a></li>
+<li><a href="0012-delimiter.html">12. Set Delimiter</a></li>
+<li><a href="0013-dotnotation.html">13. Dot Notation</a></li>
+<li><a href="0014-path.html">14. Handlebars: Path</a></li>
+<li><a href="0015-hbcomment.html">15. Handlebars: Extended Comment</a></li>
+<li><a href="0016-if.html">16. Handlebars: Built-in block helper - #if</a></li>
+<li><a href="0017-unless.html">17. Handlebars: Built-in block helper - #unless</a></li>
+<li><a href="0018-with.html">18. Handlebars: Built-in block helper - #with</a></li>
+<li><a href="0019-each.html">19. Handlebars: Built-in block helper - #each</a></li>
+<li><a href="0020-lookup.html">20. Handlebars: Built-in helper - lookup</a></li>
+<li><a href="0021-customhelper.html">21. Handlebars: Custom Helper</a></li>
+<li><a href="0022-blockhelper.html">22. Handlebars: Block Custom Helper</a></li>
+<li><a href="0023-namedarguments.html">23. Handlebars: Named Arguments</a></li>
+<li><a href="0024-partialcontext.html">24. Handlebars: Change Partial Context</a></li>
+<li><a href="0025-parentcontext.html">25. Handlebars: Parent Context</a></li>
+<li><a href="0026-subexpression.html">26. Handlebars: Subexpression</a></li>
+<li><a href="0027-advancedvariable.html">27. Handlebars: Advanced Variable</a></li>
+<li><a href="0028-dynamicpartial.html">28. Handlebars: Dynamic Partial</a></li>
+<li><a href="0029-safestring.html">29. Handlebars: Use SafeString</a></li>
+<li><a href="0030-changecontext.html">30. Handlebars: Change Context</a></li>
+<li><a href="0031-whitespace-control.html">31. Handlebars: Whitespace Control</a></li>
+<li><a href="0032-partial-block.html">32. Handlebars: Partial Block</a></li>
+<li><a href="9000-quickstart.html">33. LightnCandy: Quick Start</a></li>
+<li><a href="9001-customhelper.html">34. LightnCandy: Custom Helper</a></li>
+<li><a href="9002-helperoptions.html">35. LightnCandy: The $options Object</a></li>
+<li><a href="9003-helperescaping.html">36. LightnCandy: Use SafeString</a></li>
+<li><a href="9004-partials.html">37. LightnCandy: Deep Dive Partials</a></li>
+<li><a href="9900-lc-options.html">38. LightnCandy options</a></li>
+<li><a href="9901-lcop-helperresolver.html">39. LightnCandy option: helperresolver</a></li>
+<li><a href="9902-lcop-partialresolver.html">40. LightnCandy option: partialresolver</a></li>
+<li><a href="9903-lcop-safestring.html">41. LightnCandy option: safestring</a></li>
+<li><a href="LC-FLAG_ADVARNAME.html">42. LightnCandy option: FLAG_ADVARNAME</a></li>
+<li><a href="LC-FLAG_BESTPERFORMANCE.html">43. LightnCandy option: FLAG_BESTPERFORMANCE</a></li>
+<li><a href="LC-FLAG_ECHO.html">44. LightnCandy option: FLAG_ECHO</a></li>
+<li><a href="LC-FLAG_ELSE.html">45. LightnCandy option: FLAG_ELSE</a></li>
+<li><a href="LC-FLAG_ERROR_EXCEPTION.html">46. LightnCandy option: FLAG_ERROR_EXCEPTION</a></li>
+<li><a href="LC-FLAG_ERROR_LOG.html">47. LightnCandy option: FLAG_ERROR_LOG</a></li>
+<li><a href="LC-FLAG_ERROR_SKIPPARTIAL.html">48. LightnCandy option: FLAG_ERROR_SKIPPARTIAL</a></li>
+<li><a href="LC-FLAG_EXTHELPER.html">49. LightnCandy option: FLAG_EXTHELPER</a></li>
+<li><a href="LC-FLAG_HBESCAPE.html">50. LightnCandy option: FLAG_HBESCAPE</a></li>
+<li><a href="LC-FLAG_INSTANCE.html">51. LightnCandy option: FLAG_INSTANCE</a></li>
+<li><a href="LC-FLAG_JS.html">52. LightnCandy option: FLAG_JS</a></li>
+<li><a href="LC-FLAG_JSLENGTH.html">53. LightnCandy option: FLAG_JSLENGTH</a></li>
+<li><a href="LC-FLAG_JSOBJECT.html">54. LightnCandy option: FLAG_JSOBJECT</a></li>
+<li><a href="LC-FLAG_JSTRUE.html">55. LightnCandy option: FLAG_JSTRUE</a></li>
+<li><a href="LC-FLAG_METHOD.html">56. LightnCandy option: FLAG_METHOD</a></li>
+<li><a href="LC-FLAG_NAMEDARG.html">57. LightnCandy option: FLAG_NAMEDARG</a></li>
+<li><a href="LC-FLAG_NOESCAPE.html">58. LightnCandy option: FLAG_NOESCAPE</a></li>
+<li><a href="LC-FLAG_PARENT.html">59. LightnCandy option: FLAG_PARENT</a></li>
+<li><a href="LC-FLAG_PARTIALNEWCONTEXT.html">60. LightnCandy option: FLAG_PARTIALNEWCONTEXT</a></li>
+<li><a href="LC-FLAG_PROPERTY.html">61. LightnCandy option: FLAG_PROPERTY</a></li>
+<li><a href="LC-FLAG_RENDER_DEBUG.html">62. LightnCandy option: FLAG_RENDER_DEBUG</a></li>
+<li><a href="LC-FLAG_RUNTIMEPARTIAL.html">63. LightnCandy option: FLAG_RUNTIMEPARTIAL</a></li>
+<li><a href="LC-FLAG_SLASH.html">64. LightnCandy option: FLAG_SLASH</a></li>
+<li><a href="LC-FLAG_STANDALONEPHP.html">65. LightnCandy option: FLAG_STANDALONEPHP</a></li>
+<li><a href="LC-FLAG_THIS.html">66. LightnCandy option: FLAG_THIS</a></li>
+</ol>
+   </li>
+   <li><a href="#search"><label for="gsc-i-id1"><span class="glyphicon glyphicon-search"></span> Search</label></a></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+   <li><a href="https://github.com/zordius/HandlebarsCookbook"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Go to Github</a></li>
+  </ul>
+ </div>
+</nav>
+<div class="container-fluid">
+ <h1>Inverted Block</h1>
+ <p>A inverted block is started with <code>{{^foo}}</code> and end with <code>{{/foo}}</code>.</p>
+   <a name="InvertedBlockforTrue"></a><a class="glyphicon glyphicon-pushpin" href="#InvertedBlockforTrue"></a>
+<h2>Inverted Block for True</h2>
+   
+        <h4>An inverted block will not render inner content for an array.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_rJkrPgSQCYM"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token number">5</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_HyerPeS7RtM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rJZrDermRYz" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_H1fSvgBXRtG">Show / Hide</button> <textarea class="copy" id="code_H1fSvgBXRtG">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => array(
+    1,
+    3,
+    5
+  )
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_H1fSvgBXRtG">Copy to clipboard</button></div><pre id="precode_H1fSvgBXRtG" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token number">5</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_rkXrPlBQRKM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token number">5</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_SJVBveHX0YG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_HkHSPlrXCtG" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_HJISPlBmCKz">Show / Hide</button> <textarea class="copy" id="code_HJISPlBmCKz">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": [
+    1,
+    3,
+    5
+  ]
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_HJISPlBmCKz">Copy to clipboard</button></div><pre id="precode_HJISPlBmCKz" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token number">5</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_SkDHweSQRFM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token number">5</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_ryOSPlHmCFG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_BJtHPeSmAYM" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_BJqrDxrmRYz">Show / Hide</button> <textarea class="copy" id="code_BJqrDxrmRYz">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": [
+    1,
+    3,
+    5
+  ]
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_BJqrDxrmRYz">Copy to clipboard</button></div><pre id="precode_BJqrDxrmRYz" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token number">5</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <h4>An inverted block will not render inner content for an object.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_BysSDlHXRKM"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token double-quoted-string string">"bar"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">NULL</span><span class="token punctuation">,</span>
+    <span class="token double-quoted-string string">"moo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">NULL</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_Sk3SDlHmCFM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rkTBDgHm0Yf" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_SyRBvlHXAFz">Show / Hide</button> <textarea class="copy" id="code_SyRBvlHXAFz">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => array(
+    "bar" => NULL,
+    "moo" => NULL
+  )
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_SyRBvlHXAFz">Copy to clipboard</button></div><pre id="precode_SyRBvlHXAFz" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token double-quoted-string string">"bar"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">NULL</span><span class="token punctuation">,</span>
+    <span class="token double-quoted-string string">"moo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">NULL</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_HykUveBQRFM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_Bke8wlSm0Yf"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_BJb8PgrQCKM" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_S1z8vxHQRYf">Show / Hide</button> <textarea class="copy" id="code_S1z8vxHQRYf">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": {
+    "bar": null,
+    "moo": null
+  }
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_S1z8vxHQRYf">Copy to clipboard</button></div><pre id="precode_S1z8vxHQRYf" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_HymIPxBmAFG"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_S1NIvlrmRtM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_BkBUweSQAKf" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_rkUUweSQ0tM">Show / Hide</button> <textarea class="copy" id="code_rkUUweSQ0tM">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": {
+    "bar": null,
+    "moo": null
+  }
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_rkUUweSQ0tM">Copy to clipboard</button></div><pre id="precode_rkUUweSQ0tM" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <h4>An inverted block will not render inner content for a string.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_SkulBXAKf"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">"test"</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_HJedeBXRYf"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_HybOgBXCFM" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_ryGOeBmRKf">Show / Hide</button> <textarea class="copy" id="code_ryGOeBmRKf">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => "test"
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_ryGOeBmRKf">Copy to clipboard</button></div><pre id="precode_ryGOeBmRKf" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">"test"</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_Sk7dlSXRKz"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">"test"</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_HJE_lBQCFz"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_SJBOxHmRYG" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_BJ8dlrX0KG">Show / Hide</button> <textarea class="copy" id="code_BJ8dlrX0KG">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": "test"
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_BJ8dlrX0KG">Copy to clipboard</button></div><pre id="precode_BJ8dlrX0KG" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">"test"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_ByDdgHm0tM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">"test"</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_ByOdlHmAKf"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_SJKugBXCtz" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_ry9OeSQRKG">Show / Hide</button> <textarea class="copy" id="code_ry9OeSQRKG">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": "test"
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_ry9OeSQRKG">Copy to clipboard</button></div><pre id="precode_ry9OeSQRKG" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">"test"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <h4>A inverted block will not render inner content for a number.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_ByidlBmAtM"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">1</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_S12OeH70FM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_B16OlH7CFM" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_HkAuxHQ0KG">Show / Hide</button> <textarea class="copy" id="code_HkAuxHQ0KG">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => 1
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_HkAuxHQ0KG">Copy to clipboard</button></div><pre id="precode_HkAuxHQ0KG" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">1</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_S11xOgB7CKz"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_r1xedxS7RYG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_Hybl_lrm0KM" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_rkfxdeSQRtf">Show / Hide</button> <textarea class="copy" id="code_rkfxdeSQRtf">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": 1
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_rkfxdeSQRtf">Copy to clipboard</button></div><pre id="precode_rkfxdeSQRtf" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_BJmedlrmRtz"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_HJEeulSm0YM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_SJHl_lrQAtz" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_B1Ll_xS7AYf">Show / Hide</button> <textarea class="copy" id="code_B1Ll_xS7AYf">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": 1
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_B1Ll_xS7AYf">Copy to clipboard</button></div><pre id="precode_B1Ll_xS7AYf" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>    <a name="InvertedBlockforFalse"></a><a class="glyphicon glyphicon-pushpin" href="#InvertedBlockforFalse"></a>
+<h2>Inverted Block for False</h2>
+   
+        <h4>When the value is <code>false</code>, the inner content will be rendered.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_BkPeugHX0Kz"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_HyOeOxrQAtz"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_SyKxdlS7AYz" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_r1cgOlr70Fz">Show / Hide</button> <textarea class="copy" id="code_r1cgOlr70Fz">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => false
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_r1cgOlr70Fz">Copy to clipboard</button></div><pre id="precode_r1cgOlr70Fz" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_ByjlOlBX0YM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_SkhgOxrXAKM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rJalulH7AKG" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_S1AxulS7CtG">Show / Hide</button> <textarea class="copy" id="code_S1AxulS7CtG">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": false
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_S1AxulS7CtG">Copy to clipboard</button></div><pre id="precode_S1AxulS7CtG" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_S1y-uxrmCYf"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_HylZuermAKz"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_H1b-OxB7RKz" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_rkGZdxrmCFM">Show / Hide</button> <textarea class="copy" id="code_rkGZdxrmCFM">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": false
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_rkGZdxrmCFM">Copy to clipboard</button></div><pre id="precode_rkGZdxrmCFM" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <h4>When the value is <code>empty array</code>, the inner content will be rendered.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_By7bderQRtG"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_HJVWOeS70tG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_Hyr-deH7RKf" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_HyU-ugSX0YM">Show / Hide</button> <textarea class="copy" id="code_HyU-ugSX0YM">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => array(
+
+  )
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_HyU-ugSX0YM">Copy to clipboard</button></div><pre id="precode_HyU-ugSX0YM" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_BkwWdlrXRYG"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_S1dbdlBmRtG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_H1YWuxBmRYM" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_H15-_xS7RFf">Show / Hide</button> <textarea class="copy" id="code_H15-_xS7RFf">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": []
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_H15-_xS7RFf">Copy to clipboard</button></div><pre id="precode_H15-_xS7RFf" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_S1i-ugB7RKM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_Sk3ZOlrXCFf"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_By6WulrX0Ff" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_Sy0WOlBXRtf">Show / Hide</button> <textarea class="copy" id="code_Sy0WOlBXRtf">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": []
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_Sy0WOlBXRtf">Copy to clipboard</button></div><pre id="precode_Sy0WOlBXRtf" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <h4>When the value is <code>null</code> or <code>undefined</code>, the inner content will be rendered.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_ryyfOxB7RtG"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">NULL</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_rkgGdlS7RYG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_r1bM_lrm0YM" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_BJzG_eSXRtf">Show / Hide</button> <textarea class="copy" id="code_BJzG_eSXRtf">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => NULL
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_BJzG_eSXRtf">Copy to clipboard</button></div><pre id="precode_BJzG_eSXRtf" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_BJQGuxSQAYG"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_SkVGdxHmAtG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_ByrMOeBXAYG" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_ryIM_gSQRtG">Show / Hide</button> <textarea class="copy" id="code_ryIM_gSQRtG">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": null
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_ryIM_gSQRtG">Copy to clipboard</button></div><pre id="precode_ryIM_gSQRtG" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_r1vzOlrQ0FM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_Sk_fOgSm0KG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_r1YfOlBX0FG" class="result"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_B1qMOlHXRYG">Show / Hide</button> <textarea class="copy" id="code_B1qMOlHXRYG">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": null
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_B1qMOlHXRYG">Copy to clipboard</button></div><pre id="precode_B1qMOlHXRYG" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <h4>Mustache.js will think <code>0</code> is <code>false</code>.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_Syif_xrmCKM"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">0</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_r13fOgr7CFM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_BkpfOgrXRYG" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_Hy0MOxrmRKM">Show / Hide</button> <textarea class="copy" id="code_Hy0MOxrmRKM">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => 0
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_Hy0MOxrmRKM">Copy to clipboard</button></div><pre id="precode_Hy0MOxrmRKM" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">0</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_ByyXOgH7CYG"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_r1xmdgr7CFf"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rk-7OxSQCFf" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_HJMmdeSQ0tz">Show / Hide</button> <textarea class="copy" id="code_HJMmdeSQ0tz">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": 0
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_HJMmdeSQ0tz">Copy to clipboard</button></div><pre id="precode_HJMmdeSQ0tz" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_H17mugB70Kz"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_H1VQueHXAKM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_B1S7OgSQCFG" class="different"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_H1IXdermCtM">Show / Hide</button> <textarea class="copy" id="code_H1IXdermCtM">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": 0
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_H1IXdermCtM">Copy to clipboard</button></div><pre id="precode_H1IXdermCtM" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <h4>Mustache.js will think empty string is <code>false</code>.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_SkPmdxHXAtG"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">""</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_r1_mOeBmRYM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_HJKmdxBmCKG" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_S15XuxS7RKf">Show / Hide</button> <textarea class="copy" id="code_S15XuxS7RKf">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}Ya!{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => ""
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_S15XuxS7RKf">Copy to clipboard</button></div><pre id="precode_S15XuxS7RKf" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}Ya!{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">""</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_Hko7_xSQCtf"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">""</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_SknQOeBQRYz"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rkam_lSX0Yf" class="result"><code class="language-handlebars"></code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_ryC7uxrmAYz">Show / Hide</button> <textarea class="copy" id="code_ryC7uxrmAYz">var Handlebars = require('handlebars');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": ""
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_ryC7uxrmAYz">Copy to clipboard</button></div><pre id="precode_ryC7uxrmAYz" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">""</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_rJ1EdlH7AKz"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">""</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_B1xN_lBQRKM"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>Ya!<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_BkbNdlrmRtM" class="different"><code class="language-handlebars">Ya!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_Syz4OeBQRFM">Show / Hide</button> <textarea class="copy" id="code_Syz4OeBQRFM">var Mustache = require('mustache');
+var template = '{{^foo}}Ya!{{/foo}}';
+
+var data = {
+  "foo": ""
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_Syz4OeBQRFM">Copy to clipboard</button></div><pre id="precode_Syz4OeBQRFM" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}Ya!{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token string">""</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>    <a name="ContextSwitching"></a><a class="glyphicon glyphicon-pushpin" href="#ContextSwitching"></a>
+<h2>Context Switching</h2>
+   
+        <h4>When rendering inner block, the context will not be switched.</h4>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <p>Used option:
+ <a class="lcflag" href="LC-FLAG_JSTRUE.html"> FLAG_JSTRUE</a>
+</p>
+<div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_SJmEulrXCKG"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token double-quoted-string string">"bar"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">"Good!"</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_BkN4ulSQRKz"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>,<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rJrNOxSmAFf" class="result"><code class="language-handlebars">false,Good!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_H18V_gBmAtf">Show / Hide</button> <textarea class="copy" id="code_H18V_gBmAtf">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}{{foo}},{{bar}}{{/foo}}\n";
+
+$php = LightnCandy::compile($template, array(
+  "flags" => LightnCandy::FLAG_JSTRUE
+));
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => false,
+  "bar" => "Good!"
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_H18V_gBmAtf">Copy to clipboard</button></div><pre id="precode_H18V_gBmAtf" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}{{foo}},{{bar}}{{/foo}}\n"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">,</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"flags"</span> <span class="token operator">=</span><span class="token operator">></span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">FLAG_JSTRUE</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token double-quoted-string string">"bar"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">"Good!"</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_rJD4OxB7AtG"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token string">"Good!"</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_Sy_V_xSXCtG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>,<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_SktNderm0Ff" class="result"><code class="language-handlebars">false,Good!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_r154ulSXAFG">Show / Hide</button> <textarea class="copy" id="code_r154ulSXAFG">var Handlebars = require('handlebars');
+var template = '{{^foo}}{{foo}},{{bar}}{{/foo}}\n';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": false,
+  "bar": "Good!"
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_r154ulSXAFG">Copy to clipboard</button></div><pre id="precode_r154ulSXAFG" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}{{foo}},{{bar}}{{/foo}}\n'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token string">"Good!"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_SJiVuxHQAFM"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token string">"Good!"</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_SynNOeSmAtz"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span>,<span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rypNOxrX0Kf" class="result"><code class="language-handlebars">false,Good!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_r1A4ulSXRFz">Show / Hide</button> <textarea class="copy" id="code_r1A4ulSXRFz">var Mustache = require('mustache');
+var template = '{{^foo}}{{foo}},{{bar}}{{/foo}}\n';
+
+var data = {
+  "foo": false,
+  "bar": "Good!"
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_r1A4ulSXRFz">Copy to clipboard</button></div><pre id="precode_r1A4ulSXRFz" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}{{foo}},{{bar}}{{/foo}}\n'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token string">"Good!"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>  <hr/>
+<div class="row"><div class="col-md-4"> <h5>lightncandy</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_r1kBueBXCYG"><code class="language-php"><span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token double-quoted-string string">"bar"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token double-quoted-string string">"moo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">"OH!"</span>
+<span class="token punctuation">)</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_SygSugrmRFf"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">moo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_rybrdlHXRtG" class="result"><code class="language-handlebars">OH!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_SJGrOxHXAFz">Show / Hide</button> <textarea class="copy" id="code_SJGrOxHXAFz">require('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+$template = "{{^foo}}{{^bar}}{{moo}}{{/bar}}{{/foo}}";
+
+$php = LightnCandy::compile($template);
+$render = LightnCandy::prepare($php);
+$data = array(
+  "foo" => false,
+  "bar" => false,
+  "moo" => "OH!"
+);
+echo $render($data);</textarea><button class="btn btn-primary" data-clipboard-target="#code_SJGrOxHXAFz">Copy to clipboard</button></div><pre id="precode_SJGrOxHXAFz" class="collapse"><code class="language-php"><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{{^foo}}{{^bar}}{{moo}}{{/bar}}{{/foo}}"</span><span class="token punctuation">;</span>
+
+<span class="token variable">$php</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$render</span> <span class="token operator">=</span> LightnCandy<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$php</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+  <span class="token double-quoted-string string">"foo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token double-quoted-string string">"bar"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token double-quoted-string string">"moo"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token double-quoted-string string">"OH!"</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$render</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>handlebars.js</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_SJmSOlBXCtz"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token string">"OH!"</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_ryEBdeBQRFf"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">moo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_S1HSOlr70Yf" class="result"><code class="language-handlebars">OH!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_rJUH_gBQRtM">Show / Hide</button> <textarea class="copy" id="code_rJUH_gBQRtM">var Handlebars = require('handlebars');
+var template = '{{^foo}}{{^bar}}{{moo}}{{/bar}}{{/foo}}';
+
+var render = Handlebars.compile(template);
+var data = {
+  "foo": false,
+  "bar": false,
+  "moo": "OH!"
+};
+console.log(render(data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_rJUH_gBQRtM">Copy to clipboard</button></div><pre id="precode_rJUH_gBQRtM" class="collapse"><code class="language-js"><span class="token keyword">var</span> Handlebars <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'handlebars'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}{{^bar}}{{moo}}{{/bar}}{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> render <span class="token operator">=</span> Handlebars<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token string">"OH!"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div><div class="col-md-4"> <h5>mustache</h5>
+     <div class="row">
+ <div class="col-md-6"><b>Data:</b><pre id="precode_SJPBdxSmRtz"><code class="language-js"><span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token string">"OH!"</span>
+<span class="token punctuation">}</span></code></pre></div>
+ <div class="col-md-6">
+  <div><b>Template:</b><pre id="precode_ByuBOgBQ0KG"><code class="language-handlebars"><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">foo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token punctuation">^</span><span class="token variable">bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token variable">moo</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/bar</span><span class="token delimiter punctuation">}}</span></span><span class="token handlebars"><span class="token delimiter punctuation">{{</span><span class="token block keyword">/foo</span><span class="token delimiter punctuation">}}</span></span></code></pre></div>
+  <div><b>Result:</b><pre id="precode_BktH_xB7RFz" class="result"><code class="language-handlebars">OH!</code></pre></div>
+ </div>
+</div>
+ <div class="text-center">Source Code <button class="btn" data-toggle="collapse" data-target="#precode_S19rdgrm0YM">Show / Hide</button> <textarea class="copy" id="code_S19rdgrm0YM">var Mustache = require('mustache');
+var template = '{{^foo}}{{^bar}}{{moo}}{{/bar}}{{/foo}}';
+
+var data = {
+  "foo": false,
+  "bar": false,
+  "moo": "OH!"
+};
+console.log(Mustache.render(template, data));</textarea><button class="btn btn-primary" data-clipboard-target="#code_S19rdgrm0YM">Copy to clipboard</button></div><pre id="precode_S19rdgrm0YM" class="collapse"><code class="language-js"><span class="token keyword">var</span> Mustache <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mustache'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'{{^foo}}{{^bar}}{{moo}}{{/bar}}{{/foo}}'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"moo"</span><span class="token punctuation">:</span> <span class="token string">"OH!"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Mustache<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></div>     <a name="SeeAlso..."></a><a class="glyphicon glyphicon-pushpin" href="#SeeAlso..."></a>
+<h2>See Also...</h2>
+<ul class="ref">
+ <li><a href="0008-block.html">Block</a></li>
+</ul>
+<ul class="pager">
+ <li class="previous"><a href="0008-block.html"><span class="glyphicon glyphicon-arrow-left"></span> Block</a></li>
+ <li class="next"><a href="0010-comment.html">Comment <span class="glyphicon glyphicon-arrow-right"></span></a></li>
+</ul>
+<script>
+(function() {
+ var cx = '015786516026450061497:ydk5o8cxglu';
+ var gcse = document.createElement('script');
+ gcse.type = 'text/javascript';
+ gcse.async = true;
+ gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+ var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(gcse, s);
+})();
+</script>
+<div class="search">
+<h3>Search the cookbook</h3>
+<gcse:search></gcse:search>
+</div>
+<div class="footer">
+Generated at 2018-03-20T06:06:36.046Z
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+<script>
+if (document.execCommand) {
+    new Clipboard('.btn[data-clipboard-target]');
+} else {
+    $('.btn[data-clipboard-target]').hide();
+}
+
+$(document).keydown(function (e) {
+  var A;
+
+  if ($('#gsc-i-id1').is(':focus')) {
+      return;
+  }
+
+  switch (e.keyCode) {
+  case 37:
+    A = $('.pager .previous a').attr('href');
+    break;
+  case 39:
+    A = $('.pager .next a').attr('href');
+    break;
+  case 191:
+    return setTimeout(function () {
+        $('#gsc-i-id1').focus();
+    }, 1);
+  case 190:
+    return $('ul.ref li:first-child a').focus();
+  case 188:
+    return $('.navbar .nav .dropdown .dropdown-toggle').trigger('click');
+  }
+  if (A) {
+    location.href = A;
+  }
+});
+</script>
+</body>
+</html>
